@@ -1,70 +1,76 @@
 <!doctype html>
+
 <html lang="en" class="no-js">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>
-        <g:layoutTitle default="Grails"/>
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <asset:link rel="icon" href="favicon.ico" type="image/x-ico"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title><g:layoutTitle default="Budget View"/></title>
+    %{--<meta http-equiv="cache-control" content="max-age=0" />--}%
+    %{--<meta http-equiv="cache-control" content="no-cache" />--}%
+    %{--<meta http-equiv="expires" content="0" />--}%
+    %{--<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />--}%
+    %{--<meta http-equiv="pragma" content="no-cache" />--}%
 
-    <asset:stylesheet src="application.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}">
+    <link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">
+
+    <asset:stylesheet href="budget_view_main_mnf.css"/>
+    <asset:stylesheet href="budget_view_plugin_mnf.css"/>
+
+        <asset:javascript src="jquery-et-al.js"/> %{-- Arafat: Making Defered JS might create problems--}%
+        <asset:javascript src="jquery-ui-1.9.2.legacy/jquery-ui.js"/>
+        <asset:javascript src="datatable-et-al.js"/>
+        <asset:javascript src="jqwidgets.js"/>
+        <asset:javascript src="jqwidgets2.js"/>
+        <script src="//cdn.datatables.net/plug-ins/1.10.11/sorting/date-eu.js" type="text/javascript"></script>
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+%{--    Termst--}%
 
     <g:layoutHead/>
-</head>
+    <script>
 
+        var appContext = '${request.contextPath}';
+        var sessionExpMsg = '<g:message code="session.expiry.msg" default="Your session is about to finish, do you want to keep current session?"/>';
+    </script>
+
+</head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark navbar-static-top" role="navigation">
-    <a class="navbar-brand" href="/#"><asset:image src="grails.svg" alt="Grails Logo"/></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<g:render template="/common/header" />
+<div id="content-whole">
+    <div id="content-whole-inner">
+        <div class="logoDiv">
 
-    <div class="collapse navbar-collapse" aria-expanded="false" style="height: 0.8px;" id="navbarContent">
-        <ul class="nav navbar-nav ml-auto">
-            <g:pageProperty name="page.nav"/>
-        </ul>
+            <div class="logoDivLeft">
+                <a href="#"><img src="${assetPath(src: 'logo.png')}" alt="Budget View"/></a>
+            </div>
+
+            <div class="logoDivRight">
+                <div id="spinner" class="spinner" style="display:none;">
+                    <img src="${assetPath(src:'spinner.gif')}" alt="${message(code:'spinner.alt.Loading',default:'Loading...')}" />
+                </div>
+            </div>
+        </div>
+
+        <g:layoutBody/>
+        <div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt.Loading&hellip" default="Loading&hellip;"/></div>
     </div>
 
-</nav>
+    <g:render template="/common/footer" />
 
-<g:layoutBody/>
-
-<div class="footer row" role="contentinfo">
-    <div class="col">
-        <a href="http://guides.grails.org" target="_blank">
-            <asset:image src="advancedgrails.svg" alt="Grails Guides" class="float-left"/>
-        </a>
-        <strong class="centered"><a href="http://guides.grails.org" target="_blank">Grails Guides</a></strong>
-        <p>Building your first Grails app? Looking to add security, or create a Single-Page-App? Check out the <a href="http://guides.grails.org" target="_blank">Grails Guides</a> for step-by-step tutorials.</p>
-
-    </div>
-    <div class="col">
-        <a href="http://docs.grails.org" target="_blank">
-            <asset:image src="documentation.svg" alt="Grails Documentation" class="float-left"/>
-        </a>
-        <strong class="centered"><a href="http://docs.grails.org" target="_blank">Documentation</a></strong>
-        <p>Ready to dig in? You can find in-depth documentation for all the features of Grails in the <a href="http://docs.grails.org" target="_blank">User Guide</a>.</p>
-
-    </div>
-
-    <div class="col">
-        <a href="https://grails-slack.cfapps.io" target="_blank">
-            <asset:image src="slack.svg" alt="Grails Slack" class="float-left"/>
-        </a>
-        <strong class="centered"><a href="https://grails-slack.cfapps.io" target="_blank">Join the Community</a></strong>
-        <p>Get feedback and share your experience with other Grails developers in the community <a href="https://grails-slack.cfapps.io" target="_blank">Slack channel</a>.</p>
-    </div>
 </div>
 
 
-<div id="spinner" class="spinner" style="display:none;">
-    <g:message code="spinner.alt" default="Loading&hellip;"/>
-</div>
+<script type="text/javascript">
 
-<asset:javascript src="application.js"/>
+
+
+</script>
 
 </body>
 </html>
+
