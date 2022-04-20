@@ -58,7 +58,7 @@
                             <g:message code="bv.bankStatement.password.label" default="password: " />
                         </label><br>
                         %{--<input type="password"  id="password" name="password"/>--}%
-                        <input type="password" required="" id="password" name="password"/>
+                        <input type="password" required="" id="password" name="password" style="margin-top: 9px;"/>
                     </div>
                 </div>
 
